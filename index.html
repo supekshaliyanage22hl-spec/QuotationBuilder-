@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131c">
+  <meta name="description" content="Welcome to Kitchen Hub Quotation Builder.">
+  <title>Kitchen Hub | Launching Quotation Builder</title>
+  <style>
+    :root { color-scheme: dark; --gold:#f4b544; --gold2:#ffdc8a; --muted:#aab1c2; }
+    * { box-sizing:border-box; }
+    html,body { margin:0; min-height:100%; }
+    body {
+      min-height:100vh; display:grid; place-items:center; overflow:hidden;
+      background:#10131c; color:#f8f9fc; font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    }
+    .backdrop { position:fixed; inset:0; overflow:hidden; pointer-events:none; }
+    .glow { position:absolute; width:38rem; height:38rem; border-radius:50%; filter:blur(95px); opacity:.18; animation: drift 12s ease-in-out infinite alternate; }
+    .glow.one { background:#d78a13; top:-19rem; left:-10rem; }
+    .glow.two { background:#4b67b4; bottom:-25rem; right:-9rem; animation-delay:-5s; }
+    .grid { position:absolute; inset:0; opacity:.13; background-image:linear-gradient(#7d879c 1px,transparent 1px),linear-gradient(90deg,#7d879c 1px,transparent 1px); background-size:48px 48px; mask-image:linear-gradient(to bottom,black,transparent 90%); }
+    main { width:min(92vw,620px); position:relative; text-align:center; padding:clamp(28px,6vw,58px); border:1px solid rgba(255,255,255,.12); border-radius:28px; background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025)); box-shadow:0 30px 100px #0007; backdrop-filter:blur(18px); animation: arrive .8s cubic-bezier(.2,.8,.2,1) both; }
+    .brand { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:38px; }
+    .mark { display:grid; place-items:center; width:48px; height:48px; border-radius:15px; color:#17130a; font-weight:900; font-size:23px; background:linear-gradient(135deg,var(--gold2),#d18a18); box-shadow:0 8px 28px #eaa42a33; }
+    .brand-name { text-align:left; letter-spacing:.13em; font-size:13px; font-weight:800; }
+    .brand-name small { display:block; margin-top:5px; color:var(--muted); font-size:10px; font-weight:600; letter-spacing:.19em; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; border:1px solid #f4b54444; background:#f4b54412; border-radius:999px; padding:8px 13px; color:var(--gold2); font-size:11px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; }
+    .dot { width:7px; height:7px; border-radius:50%; background:#73dfa0; box-shadow:0 0 12px #73dfa0; }
+    h1 { margin:22px 0 13px; font-size:clamp(32px,6vw,48px); line-height:1.08; letter-spacing:-.045em; }
+    h1 span { color:var(--gold); }
+    .intro { max-width:400px; margin:0 auto; color:var(--muted); font-size:15px; line-height:1.75; }
+    .progress-wrap { margin:34px 0 13px; padding:0 2px; }
+    .progress-meta { display:flex; justify-content:space-between; gap:12px; margin-bottom:11px; color:#c7ccda; font-size:12px; }
+    .progress-meta strong { color:var(--gold2); font-variant-numeric:tabular-nums; }
+    .track { height:6px; background:#ffffff16; border-radius:99px; overflow:hidden; }
+    .bar { width:0%; height:100%; border-radius:99px; background:linear-gradient(90deg,#d88c19,var(--gold2)); box-shadow:0 0 18px #f4b54466; transition:width .12s linear; }
+    .actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:27px; }
+    a,button { min-height:48px; display:inline-flex; align-items:center; justify-content:center; gap:10px; border-radius:13px; padding:0 20px; font:inherit; font-size:13px; font-weight:750; text-decoration:none; cursor:pointer; transition:transform .2s,background .2s,border-color .2s; }
+    .primary { color:#19140a; border:1px solid transparent; background:linear-gradient(135deg,var(--gold2),#e6a12c); box-shadow:0 9px 24px #e5a02c22; }
+    .secondary { color:#e8ebf3; border:1px solid #ffffff20; background:#ffffff08; }
+    a:hover,button:hover { transform:translateY(-2px); }
+    .primary:hover { background:linear-gradient(135deg,#ffe8ac,#f4b544); }
+    .secondary:hover { background:#ffffff12; border-color:#ffffff38; }
+    .note { margin-top:27px; color:#7f879b; font-size:11px; }
+    .note span { color:#c6cbd6; }
+    .symbol { font-size:17px; line-height:1; }
+    @keyframes arrive { from { opacity:0; transform:translateY(18px) scale(.985); } to { opacity:1; transform:translateY(0) scale(1); } }
+    @keyframes drift { to { transform:translate(55px,35px) scale(1.1); } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+    @media(max-width:420px) { main { padding:28px 20px; border-radius:22px; } .brand { margin-bottom:29px; } .actions a,.actions button { width:100%; } }
+  </style>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true"><div class="glow one"></div><div class="glow two"></div><div class="grid"></div></div>
+  <main>
+    <div class="brand">
+      <div class="mark">K</div>
+      <div class="brand-name">KITCHEN HUB<small>SMART HOTEL SOLUTIONS</small></div>
+    </div>
+    <div class="eyebrow"><span class="dot"></span> Secure workspace</div>
+    <h1>Your quotation.<br><span>Ready to build.</span></h1>
+    <p class="intro">Opening the Kitchen Hub Quotation Builder — your workspace for creating professional quotations and exporting them with ease.</p>
+    <div class="progress-wrap" aria-live="polite">
+      <div class="progress-meta"><span id="status">Preparing your workspace…</span><strong id="percent">0%</strong></div>
+      <div class="track"><div class="bar" id="bar"></div></div>
+    </div>
+    <div class="actions">
+      <a class="primary" id="launch" href="quotation-builder_V13e.html"><span class="symbol">↗</span> Open Quotation Builder</a>
+      <button class="secondary" id="pause" type="button"><span class="symbol">Ⅱ</span> Pause redirect</button>
+    </div>
+    <p class="note">Not redirected automatically? Select <span>Open Quotation Builder</span>.</p>
+  </main>
+  <script>
+    (() => {
+      const target = new URL('quotation-builder_V13e.html', window.location.href).href;
+      const bar = document.getElementById('bar');
+      const percent = document.getElementById('percent');
+      const status = document.getElementById('status');
+      const pause = document.getElementById('pause');
+      const launch = document.getElementById('launch');
+      launch.href = target;
+      let progress = 0;
+      let paused = false;
+      let redirected = false;
+      const duration = 5000;
+      const started = performance.now();
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const tick = (now) => {
+        if (redirected) return;
+        if (!paused) progress = Math.min(100, ((now - started) / duration) * 100);
+        bar.style.width = progress + '%';
+        percent.textContent = Math.floor(progress) + '%';
+        status.textContent = paused ? 'Redirect paused — open when ready' :
+          progress < 35 ? 'Preparing your workspace…' :
+          progress < 75 ? 'Loading quotation tools…' : 'Almost there…';
+        if (progress >= 100 && !paused) {
+          redirected = true;
+          status.textContent = 'Opening Quotation Builder…';
+          window.location.replace(target);
+          return;
+        }
+        requestAnimationFrame(tick);
+      };
+      pause.addEventListener('click', () => {
+        paused = !paused;
+        pause.innerHTML = paused ? '<span class="symbol">▶</span> Resume redirect' : '<span class="symbol">Ⅱ</span> Pause redirect';
+        if (paused) {
+          status.textContent = 'Redirect paused — open when ready';
+        } else {
+          // Resume with a fresh five-second countdown.
+          progress = 0;
+          bar.style.width = '0%';
+          percent.textContent = '0%';
+          const resumeStart = performance.now();
+          const resumeTick = (now) => {
+            if (redirected || paused) return;
+            progress = Math.min(100, ((now - resumeStart) / duration) * 100);
+            bar.style.width = progress + '%';
+            percent.textContent = Math.floor(progress) + '%';
+            status.textContent = progress < 35 ? 'Preparing your workspace…' : progress < 75 ? 'Loading quotation tools…' : 'Almost there…';
+            if (progress >= 100) { redirected = true; window.location.replace(target); }
+            else requestAnimationFrame(resumeTick);
+          };
+          requestAnimationFrame(resumeTick);
+          return;
+        }
+      });
+      if (reducedMotion) {
+        status.textContent = 'Ready when you are';
+        progress = 100;
+        bar.style.width = '100%';
+        percent.textContent = '100%';
+        pause.textContent = 'Auto-redirect disabled';
+        pause.disabled = true;
+        pause.style.opacity = '.65';
+      } else {
+        requestAnimationFrame(tick);
+      }
+    })();
+  </script>
+</body>
+</html>
