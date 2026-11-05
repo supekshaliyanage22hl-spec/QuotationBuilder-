@@ -1,10 +1,10 @@
-# Handoff note: Quotation Builder (continue from Phase 5, V13g)
+# Handoff note: Quotation Builder (continue from Phase 6, V13h)
 
-**Give the new Claude these files:** `quotation-builder_V13g.html` (required) + this note.
+**Give the new Claude these files:** `quotation-builder_V13h.html` (required) + this note.
 Optional: the `tests/` folder and `PHASE1/2/3_TESTCASES.md` (only useful if that Claude can run Node/Playwright).
 
 ## First message to paste into the new chat
-> I'm continuing a project from another chat. Attached are my single-file HTML app (quotation-builder_V13g.html) and a handoff note. Read the note first, then start **Phase 6 (usability and accessibility)** following the "How we work" rules in it. Ask me before changing anything outside the phase.
+> I'm continuing a project from another chat. Attached are my single-file HTML app (quotation-builder_V13h.html) and a handoff note. Read the note first, then ask the user what they want next (see 'What is left') following the "How we work" rules in it. Ask me before changing anything outside the phase.
 
 ## The app
 - One HTML file, no build step. Quotation builder for a Sri Lankan kitchen-equipment company (currency LKR, A4 documents).
@@ -33,17 +33,16 @@ Optional: the `tests/` folder and `PHASE1/2/3_TESTCASES.md` (only useful if that
 
 | V13g | 5 | Per-quotation company/bank/currency snapshot (+ refresh button), line-discount note on preview/PDF/Excel, duplicate resets dates, `{advance}` term token, Company settings gained valid days / default terms / default advance / default bank, transparent logo stays PNG |
 
-Test status on V13g: Phase 1 = 23/23, Excel layout = 12/12, Phase 2 = 27/27, Phase 3 = 31/31, Phase 5 = 15/15. (Earlier status on V13f: Phase 1 = 23/23, Excel layout (1b) = 12/12, Phase 2 = 27/27, Phase 3 = 31/31 (stand-in for html2canvas). Excel formulas independently verified by letting LibreOffice recalculate: 0 mismatches. The other Claude's own test file `phase4_excel.test.js` is NOT usable (its helper `phase4_inspect.py` was not in the upload).
+| V13h | 6 | Terms & Conditions rebuilt (headed clauses `Heading :: text`, bullets, `{advance}` token, own page in preview/Print/PDF/Excel, switch to turn page break off), Special note box under totals, user's real terms as default, usability/accessibility pass (keyboard cards, touch buttons, labels, dialogs Esc/focus trap, Cancel in Company, Undo, gallery photos, phone top bar) |
+
+Test status on V13h: Phase 1 = 23/23, Excel layout = 12/12, Phase 2 = 27/27, Phase 3 = 33/33, Phase 5 = 15/15, Phase 6 = 24/24. (Earlier status on V13g: Phase 1 = 23/23, Excel layout = 12/12, Phase 2 = 27/27, Phase 3 = 31/31, Phase 5 = 15/15. (Earlier status on V13f: Phase 1 = 23/23, Excel layout (1b) = 12/12, Phase 2 = 27/27, Phase 3 = 31/31 (stand-in for html2canvas). Excel formulas independently verified by letting LibreOffice recalculate: 0 mismatches. The other Claude's own test file `phase4_excel.test.js` is NOT usable (its helper `phase4_inspect.py` was not in the upload).
 **Open question for the user:** with bigger Excel text, 2-4 item quotes print on 2 pages (page 2 nearly empty). Still undecided; ask if they want slightly tighter spacing so they fit on 1 page (see `PHASE4_REVIEW.md`).
 **Pending from the user:** Phase 3 manual checks (section B of `PHASE3_TESTCASES.md`) with the real html2canvas. If they report PDF problems, fix those first.
 
 ## What is left
 
-### Phase 6: usability and accessibility (NEXT, last planned phase)
-- Quote actions (duplicate/delete) only appear on hover, so no touch/keyboard access; photo input forces the camera (`capture`), blocking gallery.
-- Labels linked to inputs, aria-labels on icon buttons, focus styles, modal focus trap + Esc, contrast, bigger touch targets.
-- Company modal has no Cancel and the logo change isn't reverted on close; add undo/confirm for removing items/terms.
-- Crowded top bar on phones; performance (whole preview rebuilt on every keystroke; `localStorage` size with many photos).
-
-## Testing setup used (optional)
-Node + Playwright (headless Chromium, network blocked), LibreOffice to render Excel, `pdfinfo/qpdf/pdftoppm/tesseract` + Pillow to check PDFs. Excel formulas can be verified independently by stripping the stored `<v>` results from formula cells and letting LibreOffice recalculate (convert to csv). Pattern: seed `localStorage` with `addInitScript` **before** the page loads (the app saves its own state when a page is left, so seeding a live page and reloading gets overwritten).
+### What is left (all optional, ask the user)
+- Features seen in the user's real quotation PDF but not supported: **section header rows** (e.g. "Bra Area"), **text instead of a price** ("Already Have"), **grouped items sharing one combined price** (bracket "}"), **two photos per item**.
+- Excel spacing question: 2-4 item quotes print on 2 pages in Excel (page 2 nearly empty) - user has not decided.
+- Keystroke performance with many photos (whole preview rebuilt on each key press) was deliberately not changed.
+- Real Microsoft Excel and a real phone were never tested (only Chromium/LibreOffice).
